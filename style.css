@@ -221,19 +221,14 @@ footer {
 .project-card img {
   display: block;
   width: 100%;
-  height: auto;
+  aspect-ratio: 4 / 3;
   object-fit: cover;
+  background: #e8e6e0;
+  transition: opacity 0.3s ease;
 }
 
-.project-card h3 {
-  margin: 14px 0 6px;
-  font-size: 18px;
-}
-
-.project-card p {
-  margin: 0;
-  color: var(--muted);
-  font-size: 14px;
+.project-card:hover img {
+  opacity: 0.88;
 }
 
 /* Mobile */

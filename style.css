@@ -264,12 +264,3 @@ footer {
     gap: 32px;
   }
 }
-
-/* Mobile */
-@media (max-width: 600px) {
-  .project-grid {
-    grid-template-columns: 1fr;
-    gap: 32px;
-  }
-}
-

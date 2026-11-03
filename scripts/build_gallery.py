@@ -47,3 +47,4 @@ for folder, _, files in os.walk(SRC):
     + json.dumps(gallery, indent=1) + ";\n", encoding="utf-8")
 print({k: len(v) for k, v in gallery.items()})
 # trigger
+# trigger

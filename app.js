@@ -1,5 +1,5 @@
 (() => {
-  const G = window.GALLERY || {}, P = window.PROJECTS || [];
+  const G = window.GALLERY || {}, P = window.PROJECTS || [], PR = window.PROFILE || {};
   const $ = (s, r = document) => r.querySelector(s);
   const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
   const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -65,7 +65,24 @@
     lb.addEventListener("touchend", e => { const d = e.changedTouches[0].clientX - x0; if (Math.abs(d) > 50) show(n + (d < 0 ? 1 : -1)); });
   }
 
+
+  // Profile: about section and social links (empty fields are hidden)
+  function profile() {
+    const socials = (PR.socials || []).filter(s => s.url && s.url.trim());
+    document.querySelectorAll(".soc").forEach(n => {
+      n.innerHTML = socials.map(s => `<a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.label)}</a>`).join("");
+    });
+    const ph = $("#profilePhoto"); if (!ph) return;
+    const c = PR.photo && find(PR.photo.folder, PR.photo.name);
+    ph.innerHTML = c ? img(c, "Portrait of Ahmad Fadillah", "full") : `<span class="pf-ph" aria-hidden="true">${esc(PR.initials || "")}</span>`;
+    if (c && PR.photoPos) $("img", ph).style.objectPosition = PR.photoPos;
+    if (PR.title) $("#aboutTitle").textContent = PR.title;
+    $("#bio").innerHTML = (PR.bio || []).map((t, i) => `<p class="${i ? "" : "lead"}">${esc(t)}</p>`).join("");
+    $("#facts").innerHTML = (PR.facts || []).filter(f => f.value).map(f => `<div><dt>${esc(f.label)}</dt><dd>${esc(f.value)}</dd></div>`).join("");
+    $("#skills").innerHTML = (PR.skills || []).map(s => `<li>${esc(s)}</li>`).join("");
+  }
   document.body.dataset.page === "home" ? home() : detail();
+  profile();
 
   // Light on glass surfaces follows the pointer (mouse only)
   if (!reduce && matchMedia("(pointer: fine)").matches) {

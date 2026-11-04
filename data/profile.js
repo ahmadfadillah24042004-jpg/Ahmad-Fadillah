@@ -14,16 +14,16 @@ window.PROFILE = {
   // Rows with an empty value are hidden.
   facts: [
     { label: "Based in",   value: "Cirebon, West Java, Indonesia" },
-    { label: "Education",  value: "[Edit] School or program" },
-    { label: "Experience", value: "[Edit] Years, roles or notable clients" },
-    { label: "Tools",      value: "[Edit] e.g. Photoshop, Illustrator, Premiere Pro" }
+    { label: "Education",  value: "High School" },
+    { label: "Experience", value: "4 years in creative industry" },
+    { label: "Tools",      value: "Photoshop, Illustrator, Lightroom, Capcut, Premiere Pro" }
   ],
   skills: ["Creative direction", "Graphic design", "Branding", "Campaign visuals", "Photography", "Videography", "Visual storytelling"],
   socials: [
-    { label: "Instagram", url: "" },   // e.g. "https://instagram.com/yourname"
+    { label: "Instagram", url: "https://www.instagram.com/synthesisart_" },   // e.g. "https://instagram.com/yourname"
     { label: "LinkedIn",  url: "" },
     { label: "Behance",   url: "" },
     { label: "YouTube",   url: "" },
-    { label: "WhatsApp",  url: "" }    // e.g. "https://wa.me/62xxxxxxxxxx"
+    { label: "WhatsApp",  url: "https://wa.me/6285794286412" }    // e.g. "https://wa.me/62xxxxxxxxxx"
   ]
 };

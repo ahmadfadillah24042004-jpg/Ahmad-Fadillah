@@ -7,13 +7,13 @@ window.PROFILE = {
   initials: "AF",
   // Each line = one paragraph. Replace the placeholder lines.
   bio: [
-    "I create visual work that combines strategy, design, and storytelling.",
-    "[Edit] Write 2-3 sentences about who you are, where you come from, and what drives your work.",
-    "[Edit] Write 2-3 sentences about your creative approach and how you work with clients."
+    "Ahmad Fadillah",
+    "I am a creative professional with a strong interest in graphic design, photography, videography, visual branding, and creative direction.",
+    "Driven by curiosity and a constant desire to learn, I strive to turn ideas into meaningful visual experiences."
   ],
   // Rows with an empty value are hidden.
   facts: [
-    { label: "Based in",   value: "[Edit] City, Country" },
+    { label: "Based in",   value: "Cirebon, West Java, Indonesia" },
     { label: "Education",  value: "[Edit] School or program" },
     { label: "Experience", value: "[Edit] Years, roles or notable clients" },
     { label: "Tools",      value: "[Edit] e.g. Photoshop, Illustrator, Premiere Pro" }

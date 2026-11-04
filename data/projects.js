@@ -21,7 +21,7 @@ window.PROJECTS = [
 
   { id: "branding", title: "Branding", category: "Visual identity", layout: "stack",
     intro: "Brand identities developed as complete systems: logo, color, type and applications.",
-    cover: { folder: "branding/Ecliptic.co", name: "Artboard 1", pos: "30% 50%" },
+    cover: { folder: "branding/Ecliptic.co", name: "Artboard 5", pos: "0% 50%" },
     sections: [
       { title: "Dailydose.club", text: "Short description of this brand project.", folder: "branding/Dailydose.club" },
       { title: "Ecliptic.co", text: "Short description of this brand project.", folder: "branding/Ecliptic.co" } ] }

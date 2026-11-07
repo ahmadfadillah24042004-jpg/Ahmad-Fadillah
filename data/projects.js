@@ -16,7 +16,7 @@ window.PROJECTS = [
   { id: "video", title: "Video Editing", category: "Video and creative direction",
     intro: "Video projects and edits. Watch links will be added here.",
     cover: { folder: "cover", name: "cover video" }, layout: "editorial",
-    links: [ /* { label: "Watch on YouTube", url: "https://youtu.be/iRKehQaFzrw?si=aR-zZ_tOGCJJsn3Q" } */ ],
+    links: [{ label: "Watch on YouTube", url: "https://youtu.be/iRKehQaFzrw?si=aR-zZ_tOGCJJsn3Q" }],
     sections: [] },
 
   { id: "branding", title: "Branding", category: "Visual identity", layout: "stack",

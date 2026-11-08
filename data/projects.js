@@ -8,7 +8,7 @@ window.PROJECTS = [
 
   { id: "photography", title: "Photography", category: "Portrait and product",
     intro: "Portraits and product photography, shot with attention to light and detail.",
-    cover: { folder: "cover", name: "cover photography" }, layout: "phone",
+    cover: { folder: "cover", name: "cover photography", scale: "110%" }, layout: "phone",
     sections: [
       { title: "Portrait", folder: "photography/portrait" },
       { title: "Product", folder: "photography/product" } ] },

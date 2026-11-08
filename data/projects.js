@@ -20,9 +20,9 @@ window.PROJECTS = [
       { label: "Brand Campaign", url: "https://youtu.be/iRKehQaFzrw?si=aR-zZ_tOGCJJsn3Q" 
         cover: { folder: "cover", name: "none" } },
       { label: "Reels Product", url: "https://www.instagram.com/reel/DewRFsxtQnC/?utm_source=ig_web_copy_link&cplk=MzRlODBiNWFlZA==&srtk=MzRlODBiNWFlZA==" 
-        cover: { folder: "cover", name: "none" } ratio: "9/16"},
+        cover: { folder: "cover", name: "reels product" } ratio: "9/16"},
       { label: "Social Media", url: "https://www.instagram.com/reel/DdL7PhTSlqm/?utm_source=ig_web_copy_link&exln=MzRlODBiNWFlZA==&srtk=MzRlODBiNWFlZA==" 
-        cover: { folder: "cover", name: "none" } ratio: "9/16"},
+        cover: { folder: "cover", name: "social media" } ratio: "9/16"},
     sections: [] },
 
   { id: "branding", title: "Branding", category: "Visual identity", layout: "stack",

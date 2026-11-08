@@ -271,6 +271,20 @@ window.GALLERY = {
    "h": 2000,
    "thumb": "images-web/cover/cover-video-thumb.webp",
    "full": "images-web/cover/cover-video-full.webp"
+  },
+  {
+   "name": "reels product",
+   "w": 1080,
+   "h": 1920,
+   "thumb": "images-web/cover/reels-product-thumb.webp",
+   "full": "images-web/cover/reels-product-full.webp"
+  },
+  {
+   "name": "social media",
+   "w": 1080,
+   "h": 1920,
+   "thumb": "images-web/cover/social-media-thumb.webp",
+   "full": "images-web/cover/social-media-full.webp"
   }
  ]
 };

@@ -14,7 +14,7 @@ window.PROJECTS = [
       { title: "Product", folder: "photography/product" } ] },
 
   { id: "video", title: "Video Editing", category: "Video and creative direction",
-    intro: "Video projects and edits. Watch links will be added here.",
+    intro: "A collection of video projects showcasing my skills in creative direction, video production, and post-production. From developing visual concepts and directing shoots to video editing and colour grading, I handle each stage to create engaging visual stories with a cohesive cinematic look.",
     cover: { folder: "cover", name: "cover video" }, layout: "editorial",
     links: [
       { label: "Brand Campaign", url: "https://youtu.be/iRKehQaFzrw?si=aR-zZ_tOGCJJsn3Q" 

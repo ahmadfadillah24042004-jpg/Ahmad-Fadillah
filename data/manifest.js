@@ -252,6 +252,13 @@ window.GALLERY = {
    "full": "images-web/cover/cover-campaign-full.webp"
   },
   {
+   "name": "cover photography v2",
+   "w": 1600,
+   "h": 2000,
+   "thumb": "images-web/cover/cover-photography-v2-thumb.webp",
+   "full": "images-web/cover/cover-photography-v2-full.webp"
+  },
+  {
    "name": "cover photography",
    "w": 1600,
    "h": 2000,

@@ -38,6 +38,10 @@
     return /youtu\.?be/.test(u) ? "YouTube" : u.includes("instagram") ? "Instagram" : u.includes("tiktok") ? "TikTok" : u.includes("vimeo") ? "Vimeo" : u.includes("facebook") || u.includes("fb.watch") ? "Facebook" : u.includes("drive.google") ? "Google Drive" : "link";
   }
 
+  const ytId = u => { const m = (u || "").match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?(?:.*&)?v=|shorts\/|embed\/|live\/))([\w-]{11})/); return m ? m[1] : null; };
+  // Portrait is detected for Shorts, Reels and TikTok; set orientation: "landscape" or "portrait" to override
+  const orient = l => l.orientation || (/youtube\.com\/shorts|instagram\.com\/(?:reels?|stories)|tiktok\.com/i.test(l.url || "") ? "portrait" : "landscape");
+
   function detail() {
     const k = P.findIndex(p => p.id === new URLSearchParams(location.search).get("p"));
     const main = $("#project");
@@ -45,20 +49,31 @@
     const p = P[k], nx = P[(k + 1) % P.length];
     document.title = `${p.title} — Ahmad Fadillah`;
     main.innerHTML = `<header class="p-head"><a class="back" href="index.html#work">Back to work</a><p class="cat">${esc(p.category)}</p><h1>${esc(p.title)}</h1><p class="lead">${esc(p.intro || "")}</p></header>`;
-    if ((p.links || []).length) {
+    // Videos: split into Landscape and Portrait, each card sized like its video
+    [["landscape", "Landscape"], ["portrait", "Portrait"]].forEach(([k, title]) => {
+      const list = (p.links || []).filter(l => orient(l) === k);
+      if (!list.length) return;
       const vs = document.createElement("section"); vs.className = "block sec";
-      const box = document.createElement("div"); box.className = "g g-videos";
-      p.links.forEach(l => {
-        const c = l.cover && find(l.cover.folder, l.cover.name), pf = platform(l);
+      vs.innerHTML = `<h2>${title}</h2>`;
+      const box = document.createElement("div"); box.className = "g g-videos g-" + k;
+      list.forEach(l => {
+        const c = l.cover && find(l.cover.folder, l.cover.name), id = ytId(l.url), pf = platform(l);
         const a = document.createElement("a"); a.className = "vcard"; a.href = l.url; a.target = "_blank"; a.rel = "noopener";
-        if (l.ratio) a.style.setProperty("--r", l.ratio);
+        a.style.setProperty("--r", l.ratio || (k === "portrait" ? "9/16" : "16/9"));
         a.setAttribute("aria-label", `Watch on ${pf}${l.label ? ": " + l.label : ""} (opens in a new tab)`);
-        a.innerHTML = `<figure>${c ? img(c, "") : '<span class="ph" aria-hidden="true">▶</span>'}<span class="vover" aria-hidden="true">Watch on ${esc(pf)}</span></figure>${l.label ? `<p>${esc(l.label)}</p>` : ""}`;
-        if (c && l.cover.pos) $("img", a).style.objectPosition = l.cover.pos;
+        // Cover priority: your own cover, then the YouTube thumbnail, then a plain placeholder
+        const inner = c ? img(c, "") : id ? `<img src="https://i.ytimg.com/vi/${id}/maxresdefault.jpg" alt="" loading="lazy" decoding="async">` : '<span class="ph" aria-hidden="true">▶</span>';
+        a.innerHTML = `<figure>${inner}<span class="vover" aria-hidden="true">Watch on ${esc(pf)}</span></figure>${l.label ? `<p>${esc(l.label)}</p>` : ""}`;
+        const im = $("img", a);
+        if (im && c && l.cover.pos) im.style.objectPosition = l.cover.pos;
+        if (im && !c && id) im.addEventListener("error", () => {
+          if (!im.dataset.f) { im.dataset.f = 1; im.src = `https://i.ytimg.com/vi/${id}/hqdefault.jpg`; }
+          else { const ph = document.createElement("span"); ph.className = "ph"; ph.textContent = "▶"; im.replaceWith(ph); }
+        });
         box.append(a);
       });
       vs.append(box); main.append(vs);
-    }
+    });
     p.sections.forEach(s => {
       const list = G[s.folder] || [], lay = s.layout || p.layout || "editorial";
       const sec = document.createElement("section"); sec.className = "block sec";

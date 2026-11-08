@@ -16,13 +16,19 @@ window.PROJECTS = [
   { id: "video", title: "Video Editing", category: "Video and creative direction",
     intro: "Video projects and edits. Watch links will be added here.",
     cover: { folder: "cover", name: "cover video" }, layout: "editorial",
-    links: [{ label: "Watch on YouTube", url: "https://youtu.be/iRKehQaFzrw?si=aR-zZ_tOGCJJsn3Q" }],
+    links: [
+      { label: "Brand Campaign", url: "https://youtu.be/iRKehQaFzrw?si=aR-zZ_tOGCJJsn3Q" 
+        cover: { folder: "cover", name: "none" } },
+      { label: "Reels Product", url: "https://www.instagram.com/reel/DewRFsxtQnC/?utm_source=ig_web_copy_link&cplk=MzRlODBiNWFlZA==&srtk=MzRlODBiNWFlZA==" 
+        cover: { folder: "cover", name: "none" } ratio: "9/16"},
+      { label: "Social Media", url: "https://www.instagram.com/reel/DdL7PhTSlqm/?utm_source=ig_web_copy_link&exln=MzRlODBiNWFlZA==&srtk=MzRlODBiNWFlZA==" 
+        cover: { folder: "cover", name: "none" } ratio: "9/16"},
     sections: [] },
 
   { id: "branding", title: "Branding", category: "Visual identity", layout: "stack",
     intro: "Brand identities developed as complete systems: logo, color, type and applications.",
     cover: { folder: "cover", name: "cover branding" },
     sections: [
-      { title: "Dailydose.club", text: "Short description of this brand project.", folder: "branding/Dailydose.club" },
-      { title: "Ecliptic.co", text: "Short description of this brand project.", folder: "branding/Ecliptic.co" } ] }
+      { title: "Dailydose.club", text: "A complete brand development project, from initial concept and logo design to brand identity and social media management. I led the creative direction and produced visual content, including product photography, videos, and marketing campaigns to build a consistent brand presence.", folder: "branding/Dailydose.club" },
+      { title: "Ecliptic.co", text: "A complete branding project for a contemporary fashion label, from brand strategy and concept development to logo design and visual identity. I developed the brand's identity, values, and visual direction, combining modern streetwear, subculture, and local cultural influences into a distinctive and cohesive brand experience.", folder: "branding/Ecliptic.co" } ] }
 ];

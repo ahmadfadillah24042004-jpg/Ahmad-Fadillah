@@ -31,14 +31,34 @@
   function show(i) { n = (i + L.length) % L.length; const im = $("img", lb); im.src = L[n].full; im.alt = `${T} ${n + 1}`; $(".cnt", lb).textContent = `${n + 1} / ${L.length}`; }
   function openLb(list, i, t) { L = list; T = t; show(i); lb.showModal(); }
 
+  // "Watch on ..." label: taken from the link, or set "platform" manually in projects.js
+  function platform(l) {
+    if (l.platform) return l.platform;
+    const u = (l.url || "").toLowerCase();
+    return /youtu\.?be/.test(u) ? "YouTube" : u.includes("instagram") ? "Instagram" : u.includes("tiktok") ? "TikTok" : u.includes("vimeo") ? "Vimeo" : u.includes("facebook") || u.includes("fb.watch") ? "Facebook" : u.includes("drive.google") ? "Google Drive" : "link";
+  }
+
   function detail() {
     const k = P.findIndex(p => p.id === new URLSearchParams(location.search).get("p"));
     const main = $("#project");
     if (k < 0) { main.innerHTML = '<section class="block"><h1>Project not found</h1><p class="lead">Go back to <a href="index.html#work">all work</a>.</p></section>'; return; }
     const p = P[k], nx = P[(k + 1) % P.length];
     document.title = `${p.title} — Ahmad Fadillah`;
-    const links = (p.links || []).map(l => `<a class="mail" href="${esc(l.url)}" target="_blank" rel="noopener">${esc(l.label)}</a>`).join("");
-    main.innerHTML = `<header class="p-head"><a class="back" href="index.html#work">Back to work</a><p class="cat">${esc(p.category)}</p><h1>${esc(p.title)}</h1><p class="lead">${esc(p.intro || "")}</p>${links}</header>`;
+    main.innerHTML = `<header class="p-head"><a class="back" href="index.html#work">Back to work</a><p class="cat">${esc(p.category)}</p><h1>${esc(p.title)}</h1><p class="lead">${esc(p.intro || "")}</p></header>`;
+    if ((p.links || []).length) {
+      const vs = document.createElement("section"); vs.className = "block sec";
+      const box = document.createElement("div"); box.className = "g g-videos";
+      p.links.forEach(l => {
+        const c = l.cover && find(l.cover.folder, l.cover.name), pf = platform(l);
+        const a = document.createElement("a"); a.className = "vcard"; a.href = l.url; a.target = "_blank"; a.rel = "noopener";
+        if (l.ratio) a.style.setProperty("--r", l.ratio);
+        a.setAttribute("aria-label", `Watch on ${pf}${l.label ? ": " + l.label : ""} (opens in a new tab)`);
+        a.innerHTML = `<figure>${c ? img(c, "") : '<span class="ph" aria-hidden="true">▶</span>'}<span class="vover" aria-hidden="true">Watch on ${esc(pf)}</span></figure>${l.label ? `<p>${esc(l.label)}</p>` : ""}`;
+        if (c && l.cover.pos) $("img", a).style.objectPosition = l.cover.pos;
+        box.append(a);
+      });
+      vs.append(box); main.append(vs);
+    }
     p.sections.forEach(s => {
       const list = G[s.folder] || [], lay = s.layout || p.layout || "editorial";
       const sec = document.createElement("section"); sec.className = "block sec";
